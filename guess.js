@@ -40,7 +40,6 @@ function startGame() {
     inputsContainer.innerHTML = "";
     generateInupt();
     
-    console.log(`Word: ${wordToGuess}`); // للتأكد أثناء التطوير
 }
 
 // --- 2. Generate Inputs Function ---
@@ -196,4 +195,5 @@ playAgainButton.addEventListener("click", startGame);
 document.addEventListener("keydown", handleBackspace);
 
 // --- Run Game on Load ---
+
 window.onload = startGame;
