@@ -1,0 +1,261 @@
+/* =========================================
+   1. الإعدادات الأساسية والمتغيرات
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color--: #f44336;
+    --success-color: #00ff88;
+    --gold-color: #ffcc00;
+    --dark-slate: #1e272e;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   2. الخلفية والأنيميشن (Body)
+   ========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    background-color: #0c0d10;
+    background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 0% 50%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 50%, hsla(339,49%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, hsla(339,49%,30%,1) 0, transparent 50%);
+    background-size: 200% 200%; 
+    animation: mesh-animation 12s ease-in-out infinite;
+    background-attachment: fixed;
+}
+
+@keyframes mesh-animation {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+}
+
+/* =========================================
+   3. العنوان (Header)
+   ========================================= */
+h1 {
+    text-align: center;
+    padding: 0.9375rem;
+    font-size: 1.75rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.3125rem;
+    border-bottom: 0.0625rem solid var(--glass-border);
+    box-shadow: 0 0.3125rem 1.25rem rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   4. منطقة اللعبة والـ Inputs
+   ========================================= */
+.guess-game {
+    width: 95%;
+    max-width: 75rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.guess-game .game-area .inputs > div {
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guess-game .game-area .inputs > div span {
+    font-size: 1.375rem;
+    margin-right: 0.9375rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.4);
+}
+
+.guess-game .game-area .inputs input {
+    margin: 0 0.375rem;
+    width: 3.625rem;
+    height: 3.625rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.125rem solid var(--glass-border);
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.guess-game .game-area .inputs input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color--);
+    box-shadow: 0 0 1.5625rem rgba(244, 67, 54, 0.4);
+    transform: scale(1.1) translateY(-0.3125rem);
+}
+
+/* ألوان حالات الإدخال */
+.guess-game .game-area .inputs input.yes-in-place { background-color: var(--success-color) !important; color: #000; box-shadow: 0 0 1.25rem var(--success-color); border: none; }
+.guess-game .game-area .inputs input.not-in-place { background-color: var(--gold-color) !important; color: #000; box-shadow: 0 0 1.25rem var(--gold-color); border: none; }
+.guess-game .game-area .inputs input.no { background-color: var(--dark-slate) !important; color: #555; opacity: 0.6; }
+
+/* =========================================
+   5. أزرار التحكم (Controls)
+   ========================================= */
+.guess-game .control {
+    display: flex;
+    gap: 0.625rem;
+    width: 31.25rem;
+    margin: 1.5625rem auto;
+}
+
+.guess-game .control button {
+    border: none;
+    padding: 0.875rem;
+    border-radius: 0.625rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 0.25rem 0 rgba(0,0,0,0.3);
+}
+
+.guess-game .control .check { background: linear-gradient(45deg, var(--primary-color--), #ff7675); }
+.guess-game .control .hint { background: #009688; }
+.guess-game .control .play-again { background: #2196f3; }
+
+.guess-game .control button:hover:not(:disabled) {
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.375rem 0 rgba(0,0,0,0.3);
+    filter: brightness(1.2);
+}
+
+.guess-game .control button:active { transform: translateY(0.125rem); box-shadow: 0 0.125rem 0 rgba(0,0,0,0.3); }
+
+/* حالة الأزرار المعطلة */
+.control button.disabled {
+    opacity: 0.4;
+    cursor: no-drop;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: grayscale(1);
+}
+
+/* =========================================
+   6. الرسائل ولوحة الألوان (Messages & Legend)
+   ========================================= */
+.message { text-align: center; color: white; font-weight: bold; font-size: 1.25rem; margin-top: 0.9375rem; height: 1.875rem; }
+.message span { color: var(--success-color); text-transform: uppercase; }
+
+.kay-colors { 
+    background: var(--glass-bg); 
+    padding: 2.5rem; 
+    border-radius: 1.25rem; 
+    backdrop-filter: blur(10px); 
+    border: 0.0625rem solid var(--glass-border); 
+    min-width: 15.625rem; 
+}
+
+.kay-colors h2 { text-align: center; margin-bottom: 1.875rem; color: white; }
+
+.kay-colors .key-color { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 0.9375rem; 
+    padding: 0.5rem; 
+    border-radius: 0.5rem; 
+    background: rgba(255,255,255,0.02); 
+}
+
+.kay-colors .key-color .key { 
+    width: 1.125rem; 
+    height: 1.125rem; 
+    border-radius: 50%; 
+    margin-right: 0.9375rem; 
+}
+
+/* ربط ألوان الدليل بالمتغيرات */
+.kay-colors .key-color .key.in-place { background: var(--success-color); box-shadow: 0 0 0.625rem var(--success-color); }
+.kay-colors .key-color .key.not-in-place { background: var(--gold-color); box-shadow: 0 0 0.625rem var(--gold-color); }
+.kay-colors .key-color .key.no { background: var(--dark-slate); }
+
+.key-text { color: #eee; font-size: 0.9375rem; }
+
+/* =========================================
+   7. التذييل (Footer)
+   ========================================= */
+footer { 
+    padding: 0.9375rem; 
+    background: rgba(0, 0, 0, 0.85); 
+    color: rgba(255,255,255,0.4); 
+    text-align: center; 
+    font-size: 0.8125rem; 
+    border-top: 0.0625rem solid var(--glass-border); 
+}
+
+/* =========================================
+   8. استجابة الشاشات (Responsive Design)
+   ========================================= */
+@media(max-width: 769px) {
+    .guess-game {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1 {
+        font-size: 1.4375rem;
+        padding: 1.25rem;
+        margin: 0 0 1.25rem;
+    }
+    .guess-game .control {
+        width: 100% !important;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto !important;
+        gap: 0.5rem;
+    }
+    .guess-game .control button {
+        width: 90% !important;
+        padding: 0.625rem 0.5rem !important;
+        font-size: 0.9375rem !important;
+    }
+    .guess-game .game-area .inputs input {
+        width: 2.1875rem;
+        height: 2.1875rem;
+        font-size: 1.5625rem;
+        margin: 0 0.1875rem;
+    }
+    .guess-game .game-area .inputs > div span {
+        font-size: 0.875rem;
+        width: auto;
+        margin-right: 0.5rem !important;
+    }    
+    .kay-colors {
+        width: 100%;
+        padding: 0.875rem;
+        margin-top: 1.25rem;
+    }
+    .kay-colors .key-color .key-text {
+        font-size: 0.875rem !important;
+    }
+}
