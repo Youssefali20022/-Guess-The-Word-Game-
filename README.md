@@ -2,9 +2,10 @@
 
 A fun and interactive word guessing game built with pure JavaScript, HTML5, and CSS3.  
 This project was developed as part of my journey to master DOM manipulation and game logic.
+ 
+🚀 Live Demo
+https://youssefali20022.github.io/-Guess-The-Word-Game-/
 
-🚀 Live Demo  
-https://youssefali20022.github.io/project-One/
 
 ✨ Features
 - Dynamic Inputs: Automatically generated based on word length.
